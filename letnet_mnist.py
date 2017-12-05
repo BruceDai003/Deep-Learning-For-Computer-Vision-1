@@ -11,15 +11,14 @@ import numpy as np
 
 print("[INFO] accessing MNIST...")
 dataset = datasets.fetch_mldata("MNIST Original")
-target = dataset.target.astype("int")
-data = dataset.data/255.0
+data = dataset.data
 
 if K.image_data_format() == "channels_first":
     data = data.reshape(data.shape[0], 1, 28, 28)
 else:
     data = data.reshape(data.shape[0], 28, 28, 1)
 
-(trainX, testX, trainY, testY) = train_test_split(data, target, test_size=0.25,
+(trainX, testX, trainY, testY) = train_test_split(data/255, dataset.target.astype("int"), test_size=0.25,
     random_state=42)
 
 lb = LabelBinarizer()
@@ -28,7 +27,7 @@ testY = lb.transform(testY)
 
 print ("[INFO] compiling model...")
 
-optimizer =  SGD(lr=0.01)
+optimizer = SGD(lr=0.01)
 model = LeNet.build(width=28, height=28, depth=1, classes=10)
 model.compile(loss="categorical_crossentropy", optimizer=optimizer,
     metrics=["accuracy"])
