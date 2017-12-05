@@ -19,7 +19,7 @@ class LeNet:
 
         model.add(Conv2D(
             20,
-            kernal_size=(5, 5),
+            kernel_size=(5, 5),
             padding="same",
             input_shape=inputShape
         ))
@@ -27,7 +27,7 @@ class LeNet:
         model.add(MaxPooling2D(strides=(2, 2)))
         model.add(Conv2D(
             50,
-            kernal_size=(5, 5),
+            kernel_size=(5, 5),
             padding="same"
         ))
         model.add(Activation("relu"))
