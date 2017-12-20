@@ -47,7 +47,7 @@ print("[INFO] evaluating network...")
 
 predictions = model.predict(testX, batch_size=64)
 
-print(classification_report(testY.argmax(axis=1), predictions.argmax(axis=2),
+print(classification_report(testY.argmax(axis=1), predictions.argmax(axis=1),
     target_names=labelNames))
 
 plt.style.use("ggplot")
